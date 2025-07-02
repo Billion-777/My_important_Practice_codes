@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <script src="/library for increase.txt"></script></head>
+    <body ng-app="myApp">
+        <div ng-controller="myCtrl">
+            <h1>
+                Date Display
+            </h1>
+            Date Format:
+            <select ng-model="SelectedFormat" ng-change="updateDate()">
+            <option value="fulldate">Full Date</option>
+            <option value="Shortdate">Short Date</option>
+            <option value="MediumTime">Medium Time</option>
+            <option value="shortTime">Short Time</option>
+            <option value="yyyy-MM-dd  HH:mm:ss">Custom formatted (yyyy-MM-dd)</option></select>
+        </div>
+        <p>Select Date:{{SelectedFormat}}</p>
+        <p>Formate Date: {{formatedDate}}</p>
+        <script>
+            var app=angular.module('myApp',[]);
+            app.controller('myCtrl',function($scope,$filter)
+            {
+                $scope.SelectedFormat='fulldata';
+                $scope.updateDate=function(){
+                var currentDate= new Date();
+                $scope.formatedDate=$filter('date')(currentDate,$scope.SelectedFormat);
+            };
+            $scope.updateDate();
+            });
+        </script>
+    </body>
+    
+    </html>
